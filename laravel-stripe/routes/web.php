@@ -16,3 +16,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+/**
+ * Stripe Payment
+ */
+Route::get('stripe-checkout', function () {
+    return view('stripe.stripe-checkout');
+});
