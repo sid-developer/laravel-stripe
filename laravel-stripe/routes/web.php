@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\StripeController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -20,6 +22,13 @@ Route::get('/', function () {
 /**
  * Stripe Payment
  */
-Route::get('stripe-checkout', function () {
-    return view('stripe.stripe-checkout');
+Route::group(['prefix' => 'stripe'], function(){
+
+    Route::get('/', [StripeController::class, 'index']);
+    Route::post('payment', [StripeController::class, 'Payment'])->name('stripe.payment');
+    Route::get('success', [StripeController::class, 'Success'])->name('stripe.success');
+    Route::get('cancelled', [StripeController::class, 'Cancel'])->name('stripe.cancelled');
+
 });
+
+
